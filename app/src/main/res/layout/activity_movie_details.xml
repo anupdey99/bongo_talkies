@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar"
+        android:theme="@style/Theme.BongoTalkies.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:contentInsetStartWithNavigation="0dp"
+            app:popupTheme="@style/Theme.BongoTalkies.PopupOverlay"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:id="@+id/parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/poster"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/cd"
+                    tools:src="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/margin_horizontal"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="The Lord of the Rings: The Return of the King" />
+
+                <TextView
+                    android:id="@+id/tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="@dimen/margin_horizontal"
+                    android:textColor="@color/text_color"
+                    android:textSize="13sp"
+                    tools:text="The eye of the enemy is moving." />
+
+                <TextView
+                    android:id="@+id/descriptionTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/margin_horizontal"
+                    android:text="@string/description"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="@dimen/margin_horizontal"
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp"
+                    tools:text="Aragorn is revealed as the heir to the ancient kings as he, Gandalf and the other members of the broken fellowship struggle to save Gondor from Sauron's forces. Meanwhile, Frodo and Sam take the ring closer to the heart of Mordor, the dark lord's realm." />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/separator" />
+
+                <TextView
+                    android:id="@+id/genresTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/margin_horizontal"
+                    android:text="@string/genres"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/genres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="@dimen/margin_horizontal"
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp"
+                    tools:text="Adventure ● Fantasy ● Action" />
+
+                <LinearLayout
+                    android:id="@+id/collectionLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/separator" />
+
+                    <TextView
+                        android:id="@+id/collectionTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="@dimen/margin_horizontal"
+                        android:text="@string/collection"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/collection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_horizontal"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="@dimen/margin_horizontal"
+                        android:textColor="@color/text_color"
+                        android:textSize="14sp"
+                        tools:text="The Lord of the Rings Collection" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/separator" />
+
+                <TextView
+                    android:id="@+id/detailsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/margin_horizontal"
+                    android:text="@string/details"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="@dimen/margin_horizontal">
+
+                    <TextView
+                        android:id="@+id/release"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/release"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/language"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/language"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/language"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/length"
+                        app:layout_constraintStart_toEndOf="@id/release"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/length"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/length"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/language"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/releaseData"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:textColor="@color/text_color"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toStartOf="@id/languageData"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/release"
+                        tools:text="2003-12-01" />
+
+                    <TextView
+                        android:id="@+id/languageData"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/text_color"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toStartOf="@id/lengthData"
+                        app:layout_constraintStart_toEndOf="@id/releaseData"
+                        app:layout_constraintTop_toBottomOf="@id/release"
+                        tools:text="English" />
+
+                    <TextView
+                        android:id="@+id/lengthData"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:textColor="@color/text_color"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/languageData"
+                        app:layout_constraintTop_toBottomOf="@id/release"
+                        tools:text="201 min" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/separator" />
+
+                <TextView
+                    android:id="@+id/productionTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/margin_horizontal"
+                    android:text="@string/production"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/production"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="@dimen/margin_horizontal"
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp"
+                    tools:text="New Line Cinema ● WingNut Films ● The Saul Zaentz Company" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp" />
+
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/white"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/emptyView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/empty_data"
+            android:textColor="@color/text_color"
+            android:textSize="14sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </FrameLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
