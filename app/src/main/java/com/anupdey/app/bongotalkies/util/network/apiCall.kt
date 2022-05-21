@@ -17,7 +17,7 @@ suspend fun<T> apiCall(api: suspend () -> T): ApiResponse<T> {
             when (e) {
                 is IOException -> {
                     errorType = ErrorType.NETWORK
-                    message = e.message ?: "No internet connection"
+                    message = "No internet connection"
                 }
                 is HttpException -> {
                     when (e.code()) {

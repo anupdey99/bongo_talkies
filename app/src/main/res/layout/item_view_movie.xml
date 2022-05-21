@@ -19,7 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/nav_bar"
+            android:background="@drawable/bg_border"
             tools:src="@drawable/ic_bongo_placeholder" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

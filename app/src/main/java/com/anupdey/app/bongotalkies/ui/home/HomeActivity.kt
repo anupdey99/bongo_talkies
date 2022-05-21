@@ -6,16 +6,23 @@ import android.os.Looper
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.anupdey.app.bongotalkies.R
 import com.anupdey.app.bongotalkies.data.remote.models.movie.MovieData
 import com.anupdey.app.bongotalkies.databinding.ActivityHomeBinding
 import com.anupdey.app.bongotalkies.ui.movie_details.MovieDetailsActivity
+import com.anupdey.app.bongotalkies.util.ext.hideError
+import com.anupdey.app.bongotalkies.util.ext.showError
 import com.anupdey.app.bongotalkies.util.ext.toast
+import com.anupdey.app.bongotalkies.util.network.ErrorType
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
-import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
@@ -63,20 +70,26 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun observerViewState() {
-        viewModel.viewState.observe(this) { state ->
-            when (state) {
-                is ViewState.ProgressState -> {
-                    binding.progressBar.isVisible = state.isShow
-                }
-                is ViewState.EmptyState -> {
-                    binding.emptyView.isVisible = state.isShow
-                }
-                is ViewState.InitData -> {
-                    dataAdapter.submitList(state.list.toList())
-                }
-                is ViewState.ShowMessage -> {
-                    state.message?.let {
-                        toast(it)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.viewStateEvent.collect { state ->
+                    when (state) {
+                        is ViewState.ProgressState -> {
+                            binding.progressBar.isVisible = state.isShow
+                        }
+                        is ViewState.EmptyState -> {
+                            binding.emptyView.isVisible = state.isShow
+                        }
+                        is ViewState.InitData -> {
+                            dataAdapter.submitList(state.list.toList())
+                            hideError(binding.errorView)
+                        }
+                        is ViewState.ShowError -> {
+                            toast(state.error.message)
+                            showError(binding.errorView, state.error) {
+                                viewModel.retry()
+                            }
+                        }
                     }
                 }
             }

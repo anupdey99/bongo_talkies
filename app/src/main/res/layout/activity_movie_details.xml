@@ -324,6 +324,15 @@
             android:visibility="gone"
             tools:visibility="visible" />
 
+        <include
+            android:id="@+id/errorView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/layout_error"
+            android:visibility="gone"
+            tools:visibility="gone"
+            />
+
     </FrameLayout>
 
 

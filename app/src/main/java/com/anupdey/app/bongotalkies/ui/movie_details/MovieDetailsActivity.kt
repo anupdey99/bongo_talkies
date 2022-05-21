@@ -6,14 +6,17 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.anupdey.app.bongotalkies.data.remote.models.movie_details.MovieDetailsResponse
 import com.anupdey.app.bongotalkies.databinding.ActivityMovieDetailsBinding
 import com.anupdey.app.bongotalkies.util.AppConstant
-import com.anupdey.app.bongotalkies.util.ext.formatDate
-import com.anupdey.app.bongotalkies.util.ext.formatToHHMM
-import com.anupdey.app.bongotalkies.util.ext.toast
+import com.anupdey.app.bongotalkies.util.ext.*
+import com.anupdey.app.bongotalkies.util.network.ErrorType
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MovieDetailsActivity: AppCompatActivity() {
@@ -52,20 +55,26 @@ class MovieDetailsActivity: AppCompatActivity() {
     }
 
     private fun observeViewState() {
-        viewModel.viewState.observe(this) { state ->
-            when (state) {
-                is ViewState.ProgressState -> {
-                    binding.progressBar.isVisible = state.isShow
-                }
-                is ViewState.EmptyState -> {
-                    binding.emptyView.isVisible = state.isShow
-                }
-                is ViewState.InitData -> {
-                    bindViewData(state.model)
-                }
-                is ViewState.ShowMessage -> {
-                    state.message?.let {
-                        toast(it)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.viewStateEvent.collect { state ->
+                    when (state) {
+                        is ViewState.ProgressState -> {
+                            binding.progressBar.isVisible = state.isShow
+                        }
+                        is ViewState.EmptyState -> {
+                            binding.emptyView.isVisible = state.isShow
+                        }
+                        is ViewState.InitData -> {
+                            bindViewData(state.model)
+                            hideError(binding.errorView)
+                        }
+                        is ViewState.ShowError -> {
+                            toast(state.error.message)
+                            showError(binding.errorView, state.error) {
+                                viewModel.retry()
+                            }
+                        }
                     }
                 }
             }

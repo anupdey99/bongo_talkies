@@ -12,4 +12,6 @@
     <string name="language">Language</string>
     <string name="length">Length</string>
     <string name="production">Production</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="try_again">Try again</string>
 </resources>
