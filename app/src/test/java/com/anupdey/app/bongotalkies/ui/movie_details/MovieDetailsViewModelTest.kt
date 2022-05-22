@@ -1,23 +1,21 @@
-package com.anupdey.app.bongotalkies.ui.home
+package com.anupdey.app.bongotalkies.ui.movie_details
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.viewModelScope
 import app.cash.turbine.test
 import com.anupdey.app.bongotalkies.MainDispatcherRule
 import com.anupdey.app.bongotalkies.data.repository.FakeMovieRepository
-import org.junit.Before
-import com.google.common.truth.Truth.assertThat
+import com.anupdey.app.bongotalkies.ui.movie_details.ViewState
+import com.google.common.truth.Truth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class HomeViewModelTest {
+class MovieDetailsViewModelTest {
 
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: MovieDetailsViewModel
 
     @ExperimentalCoroutinesApi
     @get:Rule
@@ -28,31 +26,26 @@ class HomeViewModelTest {
 
     @Before
     fun setup() {
-        viewModel = HomeViewModel(FakeMovieRepository())
-    }
-
-    @After
-    fun tearDown() {
-        viewModel.viewModelScope.cancel()
+        viewModel = MovieDetailsViewModel(FakeMovieRepository())
     }
 
     @Test
-    fun fetchTopRatedMovie_flowSuccess() = runBlocking {
+    fun fetchMovieDetails_flowSuccess() = runBlocking {
 
         val job = launch {
             viewModel.viewStateEvent.test {
                 val emission1 = awaitItem()
                 if (emission1 is ViewState.ProgressState) {
-                    assertThat("Loading").isEqualTo("Loading")
+                    Truth.assertThat("Loading").isEqualTo("Loading")
                 }
                 val emission2 = awaitItem()
                 if (emission2 is ViewState.InitData) {
-                    assertThat("Loading").isEqualTo("Loading")
+                    Truth.assertThat("Loading").isEqualTo("Loading")
                 }
                 cancelAndConsumeRemainingEvents()
             }
         }
-        viewModel.fetchTopRatedMovie(1)
+        viewModel.fetchMovieDetails(1)
         job.join()
         job.cancel()
     }
