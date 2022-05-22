@@ -2,13 +2,13 @@
 Best OTT platform for rich collection of movies and tv shows.
 
 ## Preview
-<img src="/.github/images/preview.gif" width="277" height="600"/>
+<img src="/blob/preview.gif" width="277" height="600"/>
 
 ## Screenshots
 preview | preview
 --- | ---
-![Screenshot1](/blob/images/1.jpg) | ![Screenshot2](/blob/images/2.jpg)
-![Screenshot3](/blob/images/3.jpg) | ![Screenshot4](/blob/images/4.jpg)
+![Screenshot1](/blob/1.jpg) | ![Screenshot2](/blob/2.jpg)
+![Screenshot3](/blob/3.jpg) | ![Screenshot4](/blob/4.jpg)
 
 ## Features
 - Top rated movies
@@ -31,6 +31,6 @@ Place your bongo `API_KEY` into `gradle.properties` file and build app
 ```
 
 ## Download
-Pre build apk can be found here -> [apk](/blob/apk/bongo-talkies.apk)
+Pre build apk can be found here -> [apk](/blob/bongo-talkies.apk)
 
   
